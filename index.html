@@ -106,6 +106,94 @@
             background: #525659;
             overflow: hidden;
         }
+
+        /* Mobile read-guide fallback button (hidden on desktop) */
+        .mobile-fallback {
+            display: none;
+            flex: 1;
+            width: 100%;
+            background: #525659;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .read-btn {
+            display: inline-block;
+            padding: 16px 36px;
+            background: linear-gradient(90deg, #c99a00, #e6b800);
+            color: #0a0a0a;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .read-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+        }
+
+        /* Responsive: stack layout, compact menu, swap iframe for button */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+                overflow: auto;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                flex-shrink: 0;
+            }
+
+            .sidebar-header {
+                padding: 16px 20px;
+                font-size: 16px;
+            }
+
+            .menu {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                padding: 12px;
+                overflow: visible;
+            }
+
+            .menu li {
+                flex: 1 1 auto;
+            }
+
+            .menu li a {
+                padding: 10px 14px;
+                font-size: 14px;
+                text-align: center;
+                border-right: none;
+                border-bottom: 3px solid transparent;
+                border-radius: 6px;
+                background: #161616;
+            }
+
+            .menu li a.active {
+                border-right: none;
+                border-bottom: 3px solid #e6b800;
+            }
+
+            .topbar {
+                display: none;
+            }
+
+            .pdf-container {
+                display: none;
+            }
+
+            .mobile-fallback {
+                display: flex;
+                min-height: 60vh;
+            }
+        }
     </style>
 </head>
 <body>
@@ -124,17 +212,23 @@
         <div class="pdf-container">
             <iframe id="pdf-frame" src="investment-guide.pdf" style="width: 100%; height: 100%; border: none;"></iframe>
         </div>
+        <div class="mobile-fallback">
+            <a id="read-btn" class="read-btn" href="investment-guide.pdf" target="_blank" rel="noopener">קרא את המדריך</a>
+        </div>
     </main>
 
     <script>
         (function () {
             var frame = document.getElementById('pdf-frame');
+            var readBtn = document.getElementById('read-btn');
             var links = document.querySelectorAll('.menu a[data-pdf]');
 
             function activate(link) {
+                var pdf = link.getAttribute('data-pdf');
                 links.forEach(function (l) { l.classList.remove('active'); });
                 link.classList.add('active');
-                frame.src = link.getAttribute('data-pdf');
+                frame.src = pdf;
+                readBtn.href = pdf;
             }
 
             links.forEach(function (link) {
