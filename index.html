@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>האזור הרותח בישראל - מדריך להשקעה</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            font-family: "Segoe UI", "Arial", sans-serif;
+        }
+
+        /* Right Sidebar */
+        .sidebar {
+            width: 300px;
+            background: #0a0a0a;
+            color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .sidebar-header {
+            padding: 24px 20px;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.4;
+            border-bottom: 1px solid #222;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 12px 0;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .menu li a {
+            display: block;
+            padding: 14px 20px;
+            color: #bbb;
+            text-decoration: none;
+            font-size: 15px;
+            border-right: 3px solid transparent;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .menu li a:hover {
+            background: #161616;
+            color: #fff;
+        }
+
+        .menu li a.active {
+            background: #1c1c1c;
+            color: #fff;
+            border-right: 3px solid #e6b800;
+            font-weight: 600;
+        }
+
+        /* Main Area */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .topbar {
+            height: 50px;
+            background: #0a0a0a;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            flex-shrink: 0;
+        }
+
+        .topbar .guide-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .topbar .exit-link {
+            color: #e6b800;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .topbar .exit-link:hover {
+            text-decoration: underline;
+        }
+
+        /* PDF Container */
+        .pdf-container {
+            flex: 1;
+            width: 100%;
+            background: #525659;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <!-- Right Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">האזור הרותח בישראל - מדריך להשקעה</div>
+        <ul class="menu">
+            <li><a href="#">דף הבית</a></li>
+            <li><a href="#" class="active">מדריך ההשקעה (PDF)</a></li>
+            <li><a href="#">ניתוח שוק</a></li>
+            <li><a href="#">אזורים מומלצים</a></li>
+            <li><a href="#">צור קשר</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Area -->
+    <main class="main">
+        <div class="topbar">
+            <span class="guide-title">מדריך ההשקעה - האזור הרותח בישראל</span>
+            <a href="#" class="exit-link">יציאה ✕</a>
+        </div>
+        <div class="pdf-container">
+            <iframe src="investment-guide.pdf" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+    </main>
+</body>
+</html>
