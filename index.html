@@ -200,7 +200,7 @@
                 var isMobile = window.innerWidth <= 768;
                 if (!isMobile) {
                     // Desktop: native PDF viewer, fit to container width.
-                    frame.src = pdfFileName + '#view=FitH';
+                    frame.src = pdfFileName + '#view=FitH&navpanes=0';
                 } else {
                     // Mobile: Google Docs Viewer workaround (mobile browsers
                     // don't render PDFs inline reliably).
