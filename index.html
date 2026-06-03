@@ -193,10 +193,11 @@
             var links = document.querySelectorAll('.menu a[data-pdf]');
 
             function activate(link) {
-                var pdf = link.getAttribute('data-pdf');
+                var pdfFileName = link.getAttribute('data-pdf');
                 links.forEach(function (l) { l.classList.remove('active'); });
                 link.classList.add('active');
-                frame.src = pdf;
+                var absoluteUrl = new URL(pdfFileName, window.location.origin + window.location.pathname).href;
+                frame.src = 'https://docs.google.com/gview?url=' + encodeURIComponent(absoluteUrl) + '&embedded=true';
             }
 
             links.forEach(function (link) {
