@@ -196,8 +196,17 @@
                 var pdfFileName = link.getAttribute('data-pdf');
                 links.forEach(function (l) { l.classList.remove('active'); });
                 link.classList.add('active');
-                var absoluteUrl = new URL(pdfFileName, window.location.origin + window.location.pathname).href;
-                frame.src = 'https://docs.google.com/gview?url=' + encodeURIComponent(absoluteUrl) + '&embedded=true';
+
+                var isMobile = window.innerWidth <= 768;
+                if (!isMobile) {
+                    // Desktop: native PDF viewer, fit to container width.
+                    frame.src = pdfFileName + '#view=FitH';
+                } else {
+                    // Mobile: Google Docs Viewer workaround (mobile browsers
+                    // don't render PDFs inline reliably).
+                    var absoluteUrl = new URL(pdfFileName, window.location.origin + window.location.pathname).href;
+                    frame.src = 'https://docs.google.com/gview?url=' + encodeURIComponent(absoluteUrl) + '&embedded=true';
+                }
             }
 
             links.forEach(function (link) {
