@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Special Bonus</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100vh;
+      background-color: #000;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <iframe id="pdf-frame" title="Special Bonus PDF"></iframe>
+  <script>
+    (function () {
+      var iframe = document.getElementById('pdf-frame');
+      var isMobile = window.innerWidth <= 768;
+
+      if (!isMobile) {
+        iframe.src = 'special-bonus.pdf#view=FitH&navpanes=0';
+      } else {
+        var absoluteUrl = new URL('special-bonus.pdf', window.location.href).href;
+        iframe.src = 'https://docs.google.com/gview?url=' + encodeURIComponent(absoluteUrl) + '&embedded=true';
+      }
+    })();
+  </script>
+</body>
+</html>
